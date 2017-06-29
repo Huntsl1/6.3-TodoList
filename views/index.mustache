@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>To Do List</title>
+  </head>
+  <body>
+    <h1>Things for me to do:</h1>
+    <form class="form-group" action="/new" method="post">
+      <input type="text" name="addnew" placeholder="New To Do" class="form-control">
+      <input type="text" name="asignee" placeholder="Who Will Complete the task?"class="form-control">
+      <input type="submit" name="add" value="Add To Do!" class="form-control btn btn-success">
+    </form>
+    <h3>To Do:</h3>
+    {{#todos}}    
+    {{^completed}}
+    <form class="form-group" action="/done" method="post">
+      <input type="hidden" name="id" value="{{id}}">
+      <input type="submit" name="Completed" value="Mark as Completed">{{item}}: {{assignee}}
+    </form>
+    {{/completed}}
+    {{/todos}}
+<h3>Completed:</h3>
+{{#todos}}
+<ul>
+  {{#completed}}
+  <li>{{item}} {{completed}}</li>
+  {{/completed}}
+</ul>
+  {{/todos}}
+  </body>
+</html>
